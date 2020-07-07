@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Neuroimaging - blogging</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Neuroimaging </a></h1>
+                <nav><ul>
+                    <li><a href="/category/nipype.html">nipype</a></li>
+                    <li><a href="/category/python.html">python</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/Fourth-Post.html">Learning-pelican</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2020-07-05T12:40:00+01:00">
+                Published: Sun 05 July 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/abdul-sayyed.html">Abdul Sayyed</a>
+        </address>
+<p>In <a href="/category/python.html">python</a>.</p>
+<p>tags: <a href="/tag/python.html">python</a> <a href="/tag/blogging.html">blogging</a> <a href="/tag/pelican.html">pelican</a> </p>
+</footer><!-- /.post-info --><h2>What are we using to build a site.</h2>
+<ol>
+<li>Pelican library installed with </li>
+<li>Markdown parsing library</li>
+<li>Jinja2, a template engine</li>
+<li>pip or conda virtual environment that a user create where the above are installed and kept serprately.</li>
+<li>Other buildig tools<ol>
+<li><a href="https://blog.miguelgrinberg.com/">Flask tutorial</a>. A web framework.</li>
+<li><a href="https://www.fullstackpython.com/green-unicorn-gunicorn.html">Green unicorn or gunicorn</a> is web server Gateway implementation (WSGI) tha tis used to run Python web aaplication.</li>
+<li><a href="https://www.fullstackpython.com/jinja2.html">Jinja2</a>. An implementation of a template engine.This link contains many useful sites.</li>
+</ol>
+</li>
+</ol>
+<h2>What guides are available to use.</h2>
+<ol>
+<li><a href="https://www.fullstackpython.com/blog/python-3-flask-green-unicorn-ubuntu-1604-xenial-xerus.html">Full Stack Python</a></li>
+<li></li>
+</ol>
+<h3>Building a Basic site.</h3>
+<ol>
+<li>Select your working director, or cd into it.</li>
+<li>Create a virtual env, if not created. Activate your environment</li>
+<li>
+<p>Install pelican and markdown parsing  libraries with pip ,e.g., <code>pip install pelican==3.7.1 markdown==2.6.8</code></p>
+<ul>
+<li>Installing pelican would install <code>feedgenerator, jinja2, pygments, docutils, pytx, blinker and unidecode</code></li>
+<li>Optionally you can install using pip other librarirs lke <code>piloow, beautifulsoup4, cssmin, cssprefixer, cssutil, pretty, six, smartypans and typogrify webassets</code></li>
+</ul>
+</li>
+<li>
+<p>Start pellican <code>pelican-quickstart</code></p>
+</li>
+<li>Following files are created.</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="n">Makefile</span>          <span class="n">pelicanconf</span><span class="o">.</span><span class="n">py</span>
+<span class="n">content</span><span class="o">/</span>           <span class="n">publishconf</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+
+
+<ul>
+<li>make command is used to genereat/start many task such as , making html, cleaning, regenerating serving etc. It is generated according to the input which we have used while creating a basic infrasturcture.</li>
+<li>
+<p>content/ directory is used to write markdown contents wile other two files are for configuation.</p>
+</li>
+<li>
+<p>Run <code>make html</code> and the contents of our markdown file will be converted into html in a newly created directory called <code>output</code></p>
+</li>
+<li>Run <code>make serve</code> and server will start on a local host post on port 8000.</li>
+<li>You can also use <code>pelican -s pelicanconf.py -o output content</code> to make html instead of make html</li>
+<li>You can cd to ouput then use <code>python -m http.server</code></li>
+<li>Write your post in <strong>content/</strong> directory using post or blog or any other directory like <strong>code/</strong> etc and keep your post or articles seprate.</li>
+<li>If using sublime use this [package] <code>https://packagecontrol.io/packages/Pelican</code>. Once installed use <code>Ctr+shift+p</code> and write <code>pelican</code> help wil come. You can cofigure the metadata.</li>
+</ul>
+<h3>Add themes</h3>
+<h3>Customising the views</h3>
+<ul>
+<li>New custom <code>.css</code> and <code>.js</code> files are added in a new folder under <code>content\extra</code>.</li>
+<li>We need to tell <code>pelicanconf.py</code> where are they stroed.</li>
+<li>Add the following contents in the config file</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">pelicanconf</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">CUSTOM_CSS</span> <span class="o">=</span> <span class="s1">&#39;static/css/custom.css&#39;</span>
+<span class="n">CUSTOM_JS</span> <span class="o">=</span> <span class="s1">&#39;static/js/custom.js&#39;</span>
+
+<span class="n">STATIC_PATHS</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;extra&#39;</span> <span class="p">]</span>
+
+<span class="n">EXTRA_PATH_METADATA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;extra/custom.css&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;static/css/custom.css&#39;</span><span class="p">},</span>
+    <span class="s1">&#39;extra/custom.js&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="s1">&#39;static/js/custom.js&#39;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>Adding pages to the site</h3>
+<ul>
+<li>Pages are not post but about you or the sites.</li>
+<li>Create a new folder under <code>content/pages</code> and add a new file called <code>about.md</code>.</li>
+<li>Tell config file about the pages, add the following to your config file</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">Paths</span>
+<span class="n">PATH</span> <span class="o">=</span> <span class="s1">&#39;content&#39;</span>
+<span class="n">PAGE_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pages&#39;</span><span class="p">]</span>
+<span class="n">ARTICLE_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;posts&#39;</span><span class="p">]</span>
+
+<span class="o">#</span> <span class="n">Top</span> <span class="n">menus</span>
+<span class="n">DISPLAY_CATEGORIES_ON_MENU</span> <span class="o">=</span> <span class="k">False</span>
+<span class="n">DISPLAY_PAGES_ON_MENU</span> <span class="o">=</span> <span class="k">True</span>
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
